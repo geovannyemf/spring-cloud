@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+package com.gateway.server.filters;
+
+/**
+ * 
+ */
+public final class GlobalFilter {
+
+}

@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: service-products
+        uri: lb://service-products
+        predicates:
+          - Path=/api/products/**
+        filters:
+          - StripPrefix=2
+          - name: Custom
+            args: 
+              message: Hi, configurated message
+              cookieName: usuario
+              cookieValue: gmontiel
+      - id: service-items
+        uri: lb://service-items
+        predicates:
+          - Path=/api/items/**
+        filters:
+          - StripPrefix=2
+  

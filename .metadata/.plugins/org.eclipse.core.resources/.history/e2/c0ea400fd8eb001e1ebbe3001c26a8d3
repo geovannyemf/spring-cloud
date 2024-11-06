@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package com.gateway.server.filters;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * 
+ */
+@Component
+public final class GlobalFilter implements Globa{
+	
+}

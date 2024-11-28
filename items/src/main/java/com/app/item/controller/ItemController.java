@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+@RefreshScope
 @RestController
 public class ItemController {
 	
@@ -27,6 +29,9 @@ public class ItemController {
 	@Autowired
 	@Qualifier("itemServiceFeign")
 	private ItemService itemService;
+	
+	@Autowired
+	private Environment environment;
 	
 	@Value("${configuration.message}")
 	private String message;
@@ -49,6 +54,9 @@ public class ItemController {
 		json.put("port", port);
 		logger.info("message -> "+message);
 		logger.info("port -> "+port);
+		if(environment.getActiveProfiles().length>0 && environment.getActiveProfiles()[0].equals("dev")) {
+			json.put("autor.name", environment.getProperty("configuration.autor.name"));
+		}
 		return ResponseEntity.ok(json);
 	}
 	

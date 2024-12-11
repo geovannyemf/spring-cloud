@@ -13,4 +13,15 @@ spring.config.import=configserver:http://localhost:8888
 </dependency>
 ```
 
-# Spring Gateway
+# MariaDB Configurations
+```
+# Connection to MariaDB
+spring.datasource.url=jdbc:mariadb://localhost:3306/usersdb
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=root
+
+# Hibernate
+spring.jpa.database-platform=org.hibernate.dialect.MariaDBDialect
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true```

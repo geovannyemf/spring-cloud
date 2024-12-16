@@ -24,4 +24,17 @@ spring.datasource.password=root
 # Hibernate
 spring.jpa.database-platform=org.hibernate.dialect.MariaDBDialect
 spring.jpa.hibernate.ddl-auto=create-drop
-spring.jpa.show-sql=true```
+spring.jpa.show-sql=true
+```
+# Config connection from STS to Github
+https://stackoverflow.com/questions/30421875/cant-connect-to-any-uri-error-while-commiting-code-from-eclipse-to-git-reposito
+To resolve this issue, do the followings
+
+login to your GitHub account
+go to https://github.com/settings/tokens
+click on "Generate new token"
+make necessary selections (but must select repo)
+click on "save"
+System will have a token
+use this token instead of a password in the eclipse or other tools you are using
+Now push your code from Github and it will work.
